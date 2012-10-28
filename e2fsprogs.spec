@@ -100,7 +100,7 @@ rm -rf $RPM_BUILD_ROOT
 
 echo "install-shlibs:" >> intl/Makefile
 
-%{__make} install install-libs		\
+%{__make} -j1 install install-libs	\
 	DESTDIR=$RPM_BUILD_ROOT		\
 	LDCONFIG=/usr/sbin/ldconfig
 
