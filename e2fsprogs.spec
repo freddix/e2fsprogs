@@ -1,11 +1,11 @@
 Summary:	Utilities for managing the second extended (ext2) filesystem
 Name:		e2fsprogs
-Version:	1.42.5
+Version:	1.42.9
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/e2fsprogs/%{name}-%{version}.tar.gz
-# Source0-md5:	aca828bb4bcca20991a442deb950b670
+# Source0-md5:	8ef664b6eb698aa6b733df59b17b9ed4
 URL:		http://e2fsprogs.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -66,17 +66,16 @@ A Common Error Description Library for unices - development files.
 %prep
 %setup -q
 
-sed -i -e '/AC_SUBST(DO_TEST_SUITE/a\MKINSTALLDIRS="install -d"\nAC_SUBST(MKINSTALLDIRS)\n' configure.in
-sed '/^all:/s/e2fsck\.static//' -i e2fsck/Makefile.in
-
 tail -n +2604 aclocal.m4 > acinclude.m4
 
 %build
-cp -f /usr/share/automake/config.sub .
+%if 0
 %{__libtoolize}
 %{__gettextize}
 %{__aclocal}
 %{__autoconf}
+%endif
+
 %configure \
 	--disable-e2initrd-helper	\
 	--disable-fsck			\
@@ -87,12 +86,7 @@ cp -f /usr/share/automake/config.sub .
 	--enable-elf-shlibs		\
 	--with-root-prefix=""
 
-%{__make} -j1 libs	\
-	V=1		\
-	LDFLAGS="%{rpmldflags}"
-
-%{__make} progs docs	\
-	V=1		\
+%{__make} V=1 \
 	LDFLAGS="%{rpmldflags}"
 
 %install
