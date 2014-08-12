@@ -1,11 +1,11 @@
 Summary:	Utilities for managing the second extended (ext2) filesystem
 Name:		e2fsprogs
-Version:	1.42.9
+Version:	1.42.11
 Release:	1
 License:	GPL
-Group:		Applications/System
+Group:		Core/System
 Source0:	http://downloads.sourceforge.net/e2fsprogs/%{name}-%{version}.tar.gz
-# Source0-md5:	8ef664b6eb698aa6b733df59b17b9ed4
+# Source0-md5:	412acbbd64a866c2ed1c729deaf4ae7c
 URL:		http://e2fsprogs.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -165,6 +165,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/lsattr.1*
 %{_mandir}/man1/mk_cmds.1*
 %{_mandir}/man5/e2fsck.conf.5*
+%{_mandir}/man5/ext*.5*
 %{_mandir}/man5/mke2fs.conf.5*
 %{_mandir}/man8/*
 %{_datadir}/ss
